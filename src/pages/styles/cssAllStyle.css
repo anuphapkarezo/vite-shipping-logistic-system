@@ -1,0 +1,7 @@
+.btn_hover:hover {
+    transform: translate(2px, 2px);
+}
+
+.btn_active:active {
+    transform: translate(2px, 2px);
+}

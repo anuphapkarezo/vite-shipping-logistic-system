@@ -242,7 +242,7 @@ export default function Navbar({ onToggle }) {
           </DrawerHeader>
           <Divider />
 
-          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+          <div className={`${getUserRoleNo === 0 ||  getUserRoleNo === 3 ? "hidden" : "block"}`}>
             <List open={open} >
               <ListItem
                 onClick={() => setMenuName("FLIGHT CONDITION DETAILS")}
@@ -286,7 +286,7 @@ export default function Navbar({ onToggle }) {
             </List>
           </div>
 
-          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+          <div className={`${getUserRoleNo === 0 ||  getUserRoleNo === 3 ? "hidden" : "block"}`}>
             <List open={open} >
               <ListItem
                 onClick={() => setMenuName("CHECK CHARGE DOUBLE WEIGHT")}
@@ -330,7 +330,7 @@ export default function Navbar({ onToggle }) {
             </List>
           </div>
 
-          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+          <div className={`${getUserRoleNo === 0 ||  getUserRoleNo === 3 ? "hidden" : "block"}`}>
             <List open={open} >
               <ListItem
                 onClick={() => setMenuName("TRANSPORTATION COST MONTHLY REPORT")}
@@ -374,7 +374,7 @@ export default function Navbar({ onToggle }) {
             </List>
           </div>
 
-          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+          {/* <div className={`${getUserRoleNo === 0 ||  getUserRoleNo === 3 ? "hidden" : "block"}`}> */}
             <List open={open} >
               <ListItem
                 onClick={() => setMenuName("INVOICE MAP EXPORT ENTRY REPORT")}
@@ -416,7 +416,7 @@ export default function Navbar({ onToggle }) {
                 </ListItemButton>
               </ListItem>
             </List>
-          </div>
+          {/* </div> */}
 
         </Drawer>
       </Box>

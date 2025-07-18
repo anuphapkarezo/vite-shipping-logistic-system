@@ -208,7 +208,12 @@ function LoginNew() {
           //   },
           // }}
           /> */}
-          <div style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
+          {/* <div style={{ display: 'flex', justifyContent: 'center', }}>
+            <Link to="/home" onClick={handleGuest}>
+              Access System (Guest Mode)
+            </Link>
+          </div> */}
+          <div style={{ display: 'flex', gap: '10px', marginTop: '0px' }}>
             <Button
               variant="contained"
               color="primary"
@@ -230,6 +235,7 @@ function LoginNew() {
             </Button>
           </div>
         </form>
+        
       </div>
       {/* SVG wave background */}
       {/* <svg className="login-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">

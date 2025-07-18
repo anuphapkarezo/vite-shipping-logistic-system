@@ -316,7 +316,7 @@ export default function SmartShip_Flight_Condition_Details({ onSearch }) {
         'DESTINATION', 'FACTORY', 'FORWARDER', 'TYPE', 'DESCRIPTION', 'STATUS', 'CARRIER',
         'FOB', 'MIN CHARGE', '-45[KG]', '+45[KG]', '+100[KG]', '+300[KG]', '+500[KG]', '+1000[KG]', 'MIN[KG]',
         'FLIGHT', 'TIME', 'LEADTIME', 'OPERATE DAY', 'REMARK',
-        'MIN CHARGE', 'RATE [KG]', 'REMARK'
+        'MIN CHARGE', 'RATE [KG]', 'REMARK', 'RE-PACKING'
       ];
 
       // Add headers
@@ -349,7 +349,7 @@ export default function SmartShip_Flight_Condition_Details({ onSearch }) {
           fillColor = 'E0EDFF';
         }
         // Destination All In (columns 22-24)
-        else if (index >= 21 && index <= 23) {
+        else if (index >= 21 && index <= 24) {
           fillColor = 'F68537';
         }
 
@@ -403,7 +403,8 @@ export default function SmartShip_Flight_Condition_Details({ onSearch }) {
           row.remark || '',
           row.min_charge || '',
           row.rate_kg || '',
-          row.ai_remark || ''
+          row.ai_remark || '',
+          row.rate_pallet || ''
         ];
 
         const excelRow = worksheet.addRow(dataRow);
@@ -448,7 +449,7 @@ export default function SmartShip_Flight_Condition_Details({ onSearch }) {
       });
 
       // Set column widths
-      const columnWidths = [25, 10, 15, 8, 30, 10, 10, 8, 12, 10, 10, 10, 10, 10, 10, 10, 15, 20, 10, 15, 30, 12, 12, 30];
+      const columnWidths = [25, 10, 15, 8, 30, 10, 10, 8, 12, 10, 10, 10, 10, 10, 10, 10, 15, 20, 10, 15, 30, 12, 12, 30, 12];
       columnWidths.forEach((width, index) => {
         worksheet.getColumn(index + 1).width = width;
       });
@@ -488,12 +489,14 @@ export default function SmartShip_Flight_Condition_Details({ onSearch }) {
     }
   };
 
+ 
   return (
     <>
       <Navbar onToggle={handleNavbarToggle}/>
       <Box marginLeft={isNavbarOpen ? "220px" : 3} marginTop={10}>
         <Box sx={{height: 80 , marginTop: '20px' , marginLeft: '60px'}}>
           <div style={{ height: 55, width:1800, display: "flex", flexDirection: "row", }}>
+            
             <Autocomplete
               disablePortal
               id="combo-box-demo-product"

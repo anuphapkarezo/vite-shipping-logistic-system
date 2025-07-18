@@ -132,7 +132,22 @@ export default function Navbar({ onToggle }) {
       case "/smartship_flight_condition_details":
         setMenuName("FLIGHT CONDITION DETAILS");
         setMenuIcon(<img src="/flight_detail.png" alt="" width={30} />);
+        setSelectedMenu("fcd");
+        break;
+      case "/smartship_check_charge_weight":
+        setMenuName("CHECK CHARE DOUBLE WEIGHT");
+        setMenuIcon(<img src="/cw.png" alt="" width={30} />);
+        setSelectedMenu("ccw");
+        break;
+      case "/smartship_monthly_report":
+        setMenuName("TRANSPORTATION COST MONTHLY REPORT");
+        setMenuIcon(<img src="/monthly.png" alt="" width={30} />);
         setSelectedMenu("mon");
+        break;
+      case "/SmartShip_export_entry_report":
+        setMenuName("INVOICE MAP EXPORT ENTRY REPORT");
+        setMenuIcon(<img src="/exp.png" alt="" width={30} />);
+        setSelectedMenu("eer");
         break;
       default:
         setMenuName("SMART SHIPPING & LOGISTICS MANAGEMENT");
@@ -141,9 +156,15 @@ export default function Navbar({ onToggle }) {
   }, [location.pathname]);
 
   const getUserDataString = localStorage.getItem('userToken'); // Retrieve the string
-    const getUserData = JSON.parse(getUserDataString); // Parse the string to an object
-    const getUserRoleNo = getUserData.role_no; // Access the property
+  const getUserData = JSON.parse(getUserDataString); // Parse the string to an object
+  let getUserRoleNo = 0 // Access the property
     // console.log(getUserRoleNo); // Output the value
+
+  if (!userName && !userSurname && userGuestName === 'Guest') {
+    getUserRoleNo = 0
+  } else {
+    getUserRoleNo = getUserData.role_no; // Access the property
+  }
   
   return (
     <>
@@ -221,7 +242,7 @@ export default function Navbar({ onToggle }) {
           </DrawerHeader>
           <Divider />
 
-          <div className={`${getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
             <List open={open} >
               <ListItem
                 onClick={() => setMenuName("FLIGHT CONDITION DETAILS")}
@@ -236,9 +257,9 @@ export default function Navbar({ onToggle }) {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                     // border: '1px solid black',
-                    border: selectedMenu === "mon" ? "2px solid #1976d2" : "none", // เพิ่ม border เมื่อเลือก
+                    border: selectedMenu === "fcd" ? "2px solid #1976d2" : "none", // เพิ่ม border เมื่อเลือก
                     borderRadius: "8px", // Optional: เพิ่มความโค้งของขอบ
-                    backgroundColor: selectedMenu === "mon" ? "#E3F2FD" : "transparent", // Optional: เพิ่มสีพื้นหลังขณะ active
+                    backgroundColor: selectedMenu === "fcd" ? "#E3F2FD" : "transparent", // Optional: เพิ่มสีพื้นหลังขณะ active
                     marginBottom: -1, // เพิ่มระยะห่างระหว่างรายการ
                     marginTop: -0.6, // เพิ่มระยะห่างระหว่างรายการ
                   }}
@@ -264,6 +285,139 @@ export default function Navbar({ onToggle }) {
               </ListItem>
             </List>
           </div>
+
+          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+            <List open={open} >
+              <ListItem
+                onClick={() => setMenuName("CHECK CHARGE DOUBLE WEIGHT")}
+                disablePadding
+                sx={{ display: "block", color: "black" }}
+                component={Link}
+                to="/smartship_check_charge_weight"
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    // border: '1px solid black',
+                    border: selectedMenu === "ccw" ? "2px solid #1976d2" : "none", // เพิ่ม border เมื่อเลือก
+                    borderRadius: "8px", // Optional: เพิ่มความโค้งของขอบ
+                    backgroundColor: selectedMenu === "ccw" ? "#E3F2FD" : "transparent", // Optional: เพิ่มสีพื้นหลังขณะ active
+                    marginBottom: -1, // เพิ่มระยะห่างระหว่างรายการ
+                    marginTop: -0.6, // เพิ่มระยะห่างระหว่างรายการ
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                      color: "inherit", // Set initial color
+                      "&:hover": {
+                        color: "primary.main", // Change color on hover
+                      },
+                    }}
+                  >
+                    <img src="/cw.png" alt="" width={30} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="CHECK CW"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </div>
+
+          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+            <List open={open} >
+              <ListItem
+                onClick={() => setMenuName("TRANSPORTATION COST MONTHLY REPORT")}
+                disablePadding
+                sx={{ display: "block", color: "black" }}
+                component={Link}
+                to="/smartship_monthly_report"
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    // border: '1px solid black',
+                    border: selectedMenu === "mon" ? "2px solid #1976d2" : "none", // เพิ่ม border เมื่อเลือก
+                    borderRadius: "8px", // Optional: เพิ่มความโค้งของขอบ
+                    backgroundColor: selectedMenu === "mon" ? "#E3F2FD" : "transparent", // Optional: เพิ่มสีพื้นหลังขณะ active
+                    marginBottom: -1, // เพิ่มระยะห่างระหว่างรายการ
+                    marginTop: -0.6, // เพิ่มระยะห่างระหว่างรายการ
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                      color: "inherit", // Set initial color
+                      "&:hover": {
+                        color: "primary.main", // Change color on hover
+                      },
+                    }}
+                  >
+                    <img src="/monthly.png" alt="" width={30} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="MONTHLY REPORT"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </div>
+
+          <div className={`${getUserRoleNo === 0 || getUserRoleNo === 2 || getUserRoleNo === 3 ? "hidden" : "block"}`}>
+            <List open={open} >
+              <ListItem
+                onClick={() => setMenuName("INVOICE MAP EXPORT ENTRY REPORT")}
+                disablePadding
+                sx={{ display: "block", color: "black" }}
+                component={Link}
+                to="/SmartShip_export_entry_report"
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    // border: '1px solid black',
+                    border: selectedMenu === "eer" ? "2px solid #1976d2" : "none", // เพิ่ม border เมื่อเลือก
+                    borderRadius: "8px", // Optional: เพิ่มความโค้งของขอบ
+                    backgroundColor: selectedMenu === "eer" ? "#E3F2FD" : "transparent", // Optional: เพิ่มสีพื้นหลังขณะ active
+                    marginBottom: -1, // เพิ่มระยะห่างระหว่างรายการ
+                    marginTop: -0.6, // เพิ่มระยะห่างระหว่างรายการ
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                      color: "inherit", // Set initial color
+                      "&:hover": {
+                        color: "primary.main", // Change color on hover
+                      },
+                    }}
+                  >
+                    <img src="/exp.png" alt="" width={30} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="EXPORT ENTRY"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </div>
+
         </Drawer>
       </Box>
     </>

@@ -21,7 +21,7 @@ export default function AccountMenu() {
 
   const userGuest = localStorage.getItem("guestToken");
   const userGuestObject = JSON.parse(userGuest);
-  const userGuestRole = userGuestObject?.role_type;
+  const userGuestRole = 'Guest Mode';
 
   const navigate = useNavigate();
 
